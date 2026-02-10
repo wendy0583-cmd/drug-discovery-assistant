@@ -1,69 +1,102 @@
-# 💊 신약 개발 연구 어시스턴트
 
-AI 기반 통합 과학 데이터베이스 분석 플랫폼
+---
 
-## 🌟 주요 기능
+# ✅ README_KR.md (Korean)
 
-- **5개 과학 데이터베이스 통합**: arXiv, PubMed, Google Scholar, ChEMBL, ClinicalTrials.gov
-- **AI 기반 분석**: AWS Bedrock (Nova Micro, Claude 시리즈)
-- **빠른 보고서 생성**: 5분 이내 간단한 보고서
-- **인용 분석**: Google Scholar를 통한 논문 영향력 측정
-- **PDF 보고서**: 종합 분석 결과 다운로드
+```md
+# 🧬 신약 개발 연구 어시스턴트
+**Amazon Bedrock 기반 Agent 스타일 연구 요약 시스템**
 
-## 🚀 빠른 시작
+---
 
-### 1. 설치
-```bash
-cd 25_drug_discovery_agent
-uv venv
-source .venv/bin/activate
-uv pip install -r requirements.txt
-```
+## 📌 프로젝트 개요
 
-### 2. AWS 설정
-```bash
-aws configure --profile drug-discovery
-export AWS_PROFILE=drug-discovery
-```
+본 프로젝트는 **신약 개발 연구를 지원하기 위한 AI 연구 어시스턴트 프로토타입**로,  
+**Amazon Bedrock 기반 파운데이션 모델**을 활용하여  
+**생의학 연구 텍스트를 요약·해석**하는 것을 목표로 합니다.
 
-### 3. 실행
-```bash
-streamlit run application/app.py
-```
+본 프로젝트의 핵심 목적은  
+**서비스 구현이 아닌 아키텍처 검증**으로,  
+과학 연구 워크플로우에서 **Agent 스타일 AI 시스템이 어떻게 설계될 수 있는지**를  
+이해하고 검증하는 데 있습니다.
 
-### 4. 접속
-```
-http://localhost:8501
-```
+---
 
-## 📊 데이터 소스
+## 🎯 구현 내용
 
-- ✅ **arXiv** - 과학 논문 (프리프린트)
-- ✅ **PubMed** - 생의학 문헌 (동료심사)
-- ✅ **Google Scholar** - 학술 논문 + 인용정보
-- ✅ **ChEMBL** - 생물활성 분자
-- ✅ **ClinicalTrials.gov** - 임상시험
+- Amazon Bedrock을 활용한 **텍스트 요약 파이프라인 구현**
+- Python(boto3)을 이용한 **Bedrock 모델 호출 검증**
+- **Tool → LLM → 응답** 구조의 Agent 기반 흐름 설계
+- 향후 **멀티 에이전트 확장**을 고려한 프로젝트 구조 설계
+- **비용 효율성과 재현성**을 고려한 최소 구현
 
-## 💡 사용 예시
+---
 
-```
-"HER2 억제제에 대한 최근 연구를 찾아주세요"
-"알츠하이머 치료제 개발 현황을 알려주세요"
-"KRAS G12C 관련 임상시험 정보를 요약해주세요"
-```
+## 🏗️ 아키텍처 개요
 
-## 🔧 설정
+```text
+사용자 입력 (연구 질문 / 논문 ID)
+            ↓
+데이터 전처리 / 도구 로직
+            ↓
+Amazon Bedrock (파운데이션 모델)
+            ↓
+연구 요약 결과
 
-자세한 설정 방법은 다음 문서를 참조하세요:
-- `빠른_시작_가이드.md` - 5분 완성
-- `AWS_Bedrock_연결_3단계.md` - Bedrock 연결
-- `완전한_설정_가이드.md` - 상세 가이드
+🧪 현재 구현 상태
 
-## 📝 라이선스
+✅ Amazon Bedrock 연결 확인 완료
 
-이 프로젝트는 교육 및 연구 목적으로 제작되었습니다.
+✅ 단일 모델 호출 정상 동작 검증
 
-## 👥 기여자
+✅ 텍스트 요약 결과 확인
 
-- AWS AI/ML Workshop KR 기반
-- Strands Agents SDK 사용
+⏳ 외부 연구 데이터 연동 (프로토타입 단계)
+
+⏳ 멀티 에이전트 구조 확장 예정
+
+📂 프로젝트 구조
+drug-discovery-assistant/
+├── application/               # 핵심 애플리케이션 로직
+├── assets/                    # 구조 다이어그램 등 참고 자료
+├── test_bedrock_connection.py # Bedrock 연결 검증 스크립트
+├── README.md                  # 프로젝트 설명 (영문)
+├── README_KR.md               # 프로젝트 설명 (한글)
+└── .gitignore
+
+🔬 프로젝트 배경
+
+최근 신약 개발 분야에서는
+AI 기반 논문 분석 및 연구 보조 시스템의 중요성이 커지고 있습니다.
+
+본 프로젝트는 다음을 탐구하기 위해 시작되었습니다:
+
+파운데이션 모델이 과학적 추론을 어떻게 지원할 수 있는지
+
+AWS 환경에서 Agent 기반 AI 워크플로우를 어떻게 설계할 수 있는지
+
+과도한 구현 없이도 확장 가능한 AI 구조를 설계하는 방법
+
+UI나 완성도보다는
+시스템 설계 이해와 검증에 초점을 두었습니다.
+
+🚀 향후 계획
+
+멀티 에이전트 오케스트레이션 구조 구현
+
+PubMed, ChEMBL 등 생의학 데이터 연동
+
+Lambda 기반 서버리스 실행 구조 확장
+
+검색·랭킹 기반 RAG 구조 적용
+
+⚠️ 유의 사항
+
+본 저장소는 학습 및 연구 목적의 프로토타입이며,
+임상, 규제, 실제 서비스 환경에서의 사용을 목적으로 하지 않습니다.
+
+👩‍🔬 작성자
+
+wendy0583-cmd
+생명과학·신약 개발 연구 배경을 바탕으로
+AI 기반 연구 시스템 아키텍처 설계와 검증에 관심을 두고 있습니다.
